@@ -2,9 +2,10 @@ import { defineConfig } from 'vite'
 import Vue from '@vitejs/plugin-vue'
 import Pages from 'vite-plugin-pages'
 import path from 'path'
-import Components from 'unplugin-vue-components/vite'
+import Components from 'unplugin-vue-components/vite' // 自動引入組件
 import Icons from 'unplugin-icons/vite'
 import IconsResolver from 'unplugin-icons/resolver'
+import { HeadlessUiResolver } from 'unplugin-vue-components/resolvers' //引入 HeadlessUi 的自動引入
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -18,6 +19,7 @@ export default defineConfig({
     Pages(),
     Components({
       resolvers: [
+        HeadlessUiResolver(),
         IconsResolver(
           {
             prefix: false,  // 移除 IHeroiconsOutlineHome 的前贅詞
