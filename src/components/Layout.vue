@@ -18,7 +18,7 @@
       <div :class="showMenu? '': 'hidden' " class="flex-grow sm:flex flex-col justify-between">
         <!-- begin::路由列表區域 -->
         <ul>
-          <li v-for="item in menuItem" :key="item.to">
+          <li v-for="item in menuItems" :key="item.to">
             <RouterLink
               :to="item.to"
               :class="isActive(item.to)? 'text-white': 'text-violet-400 hover:text-white'"
@@ -38,7 +38,25 @@
               <p class="font-medium tracking-wide">Rikku</p>
             </div>
           </div>
+          <ul>
+            <template
+              v-for="item in userMenuItems"
+              :key="userMenuItems.text"
+            >
+              <li v-if="item.mobile">
+                <component
+                  :is="item.tag" 
+                  :to="item.to" 
+                  class="flex items-center w-full px-4 py-3 text-violet-400 hover:text-white"
+                  @click="item.onClick"
+                >
+                {{  item.text }}
+                </component>
+              </li>
+            </template>
 
+
+          </ul>
         </div>
         <!-- end::下方列表 手機版-->
         <!-- begin::下方列表 電腦版 -->
@@ -60,21 +78,20 @@
               leave-to-class="transform scale-95 opacity-0"
             >
             <MenuItems class="absolute flex flex-col w-32 bottom-0 left-full ml-2 bg-white rounded-md shadow-lg overflow-hidden origin-bottom-left">
-              <MenuItem v-slot="{ active }">
-                <RouterLink to="/setting" 
+              <MenuItem
+                v-slot="{ active }"
+                v-for="item in userMenuItems"
+                :key="userMenuItems.text"
+              >
+                <component
+                  :is="item.tag" 
+                  :to="item.to" 
                   class="text-gray-700 text-left text-base font-normal px-3 py-2"
                   :class="active? 'bg-gray-100': ''"
+                  @click="item.onClick"
                 >
-                個人資料
-              </RouterLink>
-              </MenuItem>
-              <MenuItem v-slot="{ active }">
-                <button 
-                  class="text-gray-700 text-left text-base font-normal px-3 py-2"
-                  :class="active? 'bg-gray-100': ''"
-                >
-                  登出
-                </button>
+                  {{  item.text }}
+                </component>
               </MenuItem>
             </MenuItems>
           </TransitionZoom>
@@ -94,7 +111,7 @@
 
 <script>
 import {ref, computed} from 'vue'
-import {useRoute} from 'vue-router'
+import {useRoute, useRouter} from 'vue-router'
 import heroiconsOutlineHome from '~icons/heroicons-outline/home'
 import heroiconsOutlineDocumentText from '~icons/heroicons-outline/document-text'
 import heroiconsOutlineUser from '~icons/heroicons-outline/user'
@@ -107,21 +124,29 @@ export default {
   },
   setup () {
     const route = useRoute()
+    const router = useRouter()
     const showMenu = ref(false)
     const toggleMenu = ()=>  showMenu.value = !showMenu.value
-    const menuItem = [
+    const menuItems = [
       {to: '/', text:'首頁', icon: 'heroicons-outline-home'},
       {to: '/posts', text:'文章', icon: 'heroicons-outline-document-text'},
       {to: '/setting', text:'個人資料', icon: 'heroicons-outline-user'},
     ]
+    const userMenuItems = [
+      {tag: 'RouterLink',to: '/setting', text: '個人資料'},
+      {tag: 'button', text: '登出' , mobile:true, onClick: ()=>{
+        router.push('/login')
+      }}
+    ]
+
     const path = route.path // 取路由 
     const activeItem = computed(()=> // 為了防止 posts//01000 一樣亮燈，且不吃到首頁用反轉取得
-      [...menuItem].reverse().find(item => path.startsWith(item.to))
+      [...menuItems].reverse().find(item => path.startsWith(item.to))
     )
     const isActive = (to) => {
       return to === activeItem.value.to
     }
-    return {showMenu, toggleMenu, menuItem, isActive}
+    return {showMenu, toggleMenu, menuItems, isActive, userMenuItems}
   }
 }
 </script>
