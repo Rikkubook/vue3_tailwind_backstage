@@ -12,11 +12,13 @@
         <PrimaryButton @click="showModal = true">
           主要按鈕
         </PrimaryButton>
-        <Modal v-model="showModal">
-          <template v-slot:title> 我是跳窗</template>
-          <template #content> 我是內容</template> 
-          <!-- # 為 v-slot的簡寫 -->
-        </Modal>
+        <ConfirmModal
+          v-model="showModal"
+          title="確定要刪除文章?"
+          @success="success"
+          @cancel="cancel"
+        >
+        </ConfirmModal>
       </div>
     </div>
   </Layout>
@@ -28,7 +30,15 @@ import { ref } from 'vue'
 export default {
   setup(){
     const showModal = ref(false)
-    return{ showModal }
+
+    const success = ()=>{
+      console.log('success')
+    }
+
+    const cancel = ()=>{
+      console.log('cancel')
+    }
+    return{ showModal, success, cancel }
   }
 }
 </script>

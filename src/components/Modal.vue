@@ -1,6 +1,6 @@
 <template>
   <TransitionRoot appear :show="isOpen" as="template">
-    <Dialog as="div" @close="closeModal" class="relative z-10">
+    <Dialog as="div" @close="handleCancel" class="relative z-10">
       <TransitionChild
         as="template"
         enter="duration-300 ease-out"
@@ -30,12 +30,16 @@
               class="w-full max-w-md transform overflow-hidden rounded-2xl bg-white text-left align-middle shadow-xl transition-all"
             >
               <div class="px-6 py-4">
-                <DialogTitle
-                  as="h3"
-                  class="text-center text-2xl font-medium leading-6 text-gray-900 mb-2"
-                >
-                  <slot name="title"></slot>
-                </DialogTitle>
+                <slot name="icon"></slot>
+                <slot name="title">
+                  <DialogTitle
+                    as="h3"
+                    class="text-center text-2xl font-medium leading-6 text-gray-900 mb-2"
+                  >
+                    {{ title }}
+                  </DialogTitle>
+                </slot>
+
                 <slot name="content"></slot>
               </div>
 
@@ -43,7 +47,7 @@
                 <slot name="footer">
                   <PrimaryButton
                     type="button"
-                    @click="closeModal"
+                    @click="handleSuccess"
                     class="w-full py-1.5"
                   >
                     確定
@@ -63,7 +67,8 @@ import { useVModel } from '@vueuse/core'
 
 export default{
   props:{
-    modelValue: Boolean
+    modelValue: Boolean,
+    title: String
   },
   emits:['update:modelValue'],
   setup(props, {emit}){
@@ -82,7 +87,17 @@ export default{
       isOpen.value = false
     }
 
-    return{isOpen, openModal, closeModal}
+    const handleSuccess = ()=>{
+      emit('success')
+      closeModal()
+    }
+
+    const handleCancel = ()=>{
+      emit('cancel')
+      closeModal()
+    }
+
+    return{isOpen, openModal, closeModal, handleSuccess, handleCancel}
   }
 }
 </script>
