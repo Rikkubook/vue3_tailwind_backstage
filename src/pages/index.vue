@@ -9,36 +9,29 @@
       -->
       <!-- transition-colors -->
       <div class="space-x-4">
-        <PrimaryButton @click="showModal = true">
-          主要按鈕
-        </PrimaryButton>
-        <ConfirmModal
-          v-model="showModal"
-          title="確定要刪除文章?"
-          @success="success"
-          @cancel="cancel"
-        >
-        </ConfirmModal>
+        <DangerButton @click="deletePost">
+          刪除
+        </DangerButton>
+
       </div>
     </div>
   </Layout>
 </template>
 
 <script>
-import { ref } from 'vue'
+import { useConfirmModel } from '@/composables/useConfirmModal'
+import {ref, computed} from 'vue'
 
 export default {
   setup(){
-    const showModal = ref(false)
+    const { showModal, confirmTitle } =  useConfirmModel()
 
-    const success = ()=>{
-      console.log('success')
+    const deletePost = ()=>{
+      showModal.value = true
+      confirmTitle.value = '112233'
     }
 
-    const cancel = ()=>{
-      console.log('cancel')
-    }
-    return{ showModal, success, cancel }
+    return{ deletePost }
   }
 }
 </script>
