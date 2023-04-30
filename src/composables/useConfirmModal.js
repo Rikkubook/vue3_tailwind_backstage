@@ -1,6 +1,6 @@
 import {ref, computed} from 'vue'
 
-const showModal = ref(true)
+const showModal = ref(false)
 const confirmTitle = ref('')
 const handleSuccess = ()=>{
   console.log('success')

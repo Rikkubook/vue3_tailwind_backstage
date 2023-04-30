@@ -9,9 +9,9 @@
       -->
       <!-- transition-colors -->
       <div class="space-x-4">
-        <DangerButton @click="deletePost">
-          刪除
-        </DangerButton>
+        <PrimaryButton @click="open">
+          提示
+        </PrimaryButton>
 
       </div>
     </div>
@@ -21,17 +21,22 @@
 <script>
 import { useConfirmModel } from '@/composables/useConfirmModal'
 import {ref, computed} from 'vue'
+import { notify } from "@kyvg/vue3-notification";
+
 
 export default {
   setup(){
     const { showModal, confirmTitle } =  useConfirmModel()
-
-    const deletePost = ()=>{
-      showModal.value = true
-      confirmTitle.value = '112233'
+    const open = ()=>{
+      notify({
+        // type: 'success',
+        title: "更新成功",
+        text: "已經更新成功了",
+        duration: 10000000
+    });
     }
 
-    return{ deletePost }
+    return{ open }
   }
 }
 </script>
