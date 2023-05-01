@@ -2,8 +2,8 @@
   @apply mt-4;
 }
 
-.notification{
-  @apply w-8 h-8;
+.notification-icon{
+  @apply w-6 h-6 mt-1;
 }
 .notification-default{
   .notification-inner{
