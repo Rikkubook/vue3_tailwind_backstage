@@ -103,7 +103,7 @@
 
     </div>
     <!-- end::左側選單區域 -->
-    <div class="flex-grow bg-gray-400 overflow-x-auto min-w-0">
+    <div class="flex-grow bg-gray-100 overflow-x-auto min-w-0">
       <slot></slot>
     </div>
   </div>

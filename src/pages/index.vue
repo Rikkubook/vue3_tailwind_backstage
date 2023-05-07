@@ -1,19 +1,30 @@
 <template>
   <Layout>
-    <div class="p-4 space-y-4">
-      <!-- space-y-4 間隔 -->
-      <!--  focus:outline-none 
-        focus:ring-offset-2
-        focus:ring-violet-500
-        聚焦屬性
-      -->
-      <!-- transition-colors -->
-      <div class="space-x-4">
-        <PrimaryButton @click="open">
-          提示
-        </PrimaryButton>
-
-      </div>
+    <div class="mt-6 grid md:grid-cols-12 gap-4">
+      <TrendingCard
+        class="md:col-span-12 lg:col-span-4"
+        icon="eye"
+        label="瀏覽人次"
+        value="145"
+        :is-up="true"
+        trending="12"
+      ></TrendingCard>
+      <TrendingCard
+        class="md:col-span-12 lg:col-span-4"
+        icon="star"
+        label="點讚數"
+        value="591"
+        :is-up="false"
+        trending="2"
+      ></TrendingCard>
+      <TrendingCard
+        class="md:col-span-12 lg:col-span-4"
+        icon="annotation"
+        label="留言數"
+        value="7"
+        :is-up="true"
+        trending="53"
+      ></TrendingCard>
     </div>
   </Layout>
 </template>
