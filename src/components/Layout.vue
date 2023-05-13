@@ -104,7 +104,10 @@
     </div>
     <!-- end::左側選單區域 -->
     <div class="flex-grow bg-gray-100 overflow-x-auto min-w-0">
-      <slot></slot>
+      <div class="p-6 sm:px-10 sm:py-8">
+        <slot></slot>
+      </div>
+
     </div>
   </div>
 </template>

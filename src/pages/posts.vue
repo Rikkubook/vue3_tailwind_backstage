@@ -25,9 +25,9 @@
               class="text-sm font-normal bg-violet-600 text-white px-2 py-0.5 rounded-full tracking-wider">{{ tag }}</span>
             </span>
         </template>
-        <template #actions="{record}">
+        <template #actions="{record,confirmDeleteText}">
           <EditAction :to="`/posts/${record.id}`"></EditAction>
-          <DeleteAction @delete="handleDeletePost"></DeleteAction>
+          <DeleteAction :record="record" :confirmDeleteText="confirmDeleteText" @delete="handleDeletePost"></DeleteAction>
         </template>
       </Table>
     </Card>
@@ -74,8 +74,8 @@ export default{
       },
     ])
 
-    const handleDeletePost = ()=>{
-      console.log('a')
+    const handleDeletePost = (record)=>{
+      console.log('a', record)
     }
 
     return {data, columns, handleDeletePost}

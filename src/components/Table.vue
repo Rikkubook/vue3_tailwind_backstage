@@ -42,6 +42,7 @@
             <slot
               name="actions"
               :record="record"
+              :confirm-delete-text="confirmDeleteText"
             ></slot>
           </td>
         </tr>
@@ -71,7 +72,11 @@ export default {
     emptyText:{
       type: String,
       default: '當前沒有任何資料'
-    }
+    },
+    confirmDeleteText:{
+      type: String,
+      default: '~當前沒有任何資料'
+    },
   },
   setup (props) {
     const columnCount = computed(()=>{
