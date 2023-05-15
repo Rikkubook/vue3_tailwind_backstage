@@ -54,10 +54,14 @@
       </tbody>
     </table>
   </div>
+  <Pagination
+    v-model:current-page="currentPage"
+    :total-page="totalPage"
+  />
 </template>
 
 <script>
-import {computed} from 'vue'
+import {ref, computed} from 'vue'
 
 export default {
   props:{
@@ -82,7 +86,11 @@ export default {
     const columnCount = computed(()=>{
       return props.columns.length +2
     })
-    return {columnCount}
+
+    const currentPage = ref(1)
+    const totalPage = ref(10)
+
+    return {columnCount, currentPage, totalPage}
   }
 }
 </script>

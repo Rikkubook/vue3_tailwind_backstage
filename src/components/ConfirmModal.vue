@@ -47,6 +47,8 @@ export default{
     
     // v-model="modelValue"
     // v-model:data="data" const isOpen = useVModels(props,'data')
+    // https://www.jianshu.com/p/11b5e27b9a29
+    
     const isOpen = useVModel(props) // 預設會自動抓 'modelValue'
 
     const openModal = () => {
