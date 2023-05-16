@@ -4,7 +4,9 @@
       <thead>
         <tr class="border-b border-gray-200">
           <th class="pl-5 py-3 text-left">
-            <input type="checkbox" class="form-checkbox">
+            <SelectAllCheckbox 
+              v-model:state="selectAllState"
+            />
           </th>
           <th 
             v-for="column in columns"
@@ -18,11 +20,16 @@
       </thead>
       <tbody>
         <tr
-          v-for="record in data"
+          v-for="(record,i) in data"
           :key="record.id"
+          :class="{'bg-violet-50': rowSelectStatus[i]} "
         >
           <td class="pl-5 py-3 text-gray-600 whitespace-nowrap">
-            <input type="checkbox" class="form-checkbox">
+            <!-- https://penueling.com/%E7%B7%9A%E4%B8%8A%E5%AD%B8%E7%BF%92/vue3%E4%BD%BF%E7%94%A8v-model%E7%B6%81%E5%AE%9A/ -->
+            <!-- https://ithelp.ithome.com.tw/m/articles/10268187 -->
+            <SelectRowCheckbox
+              v-model:state="rowSelectStatus[i]"
+            />
           </td>
 
           <td
@@ -86,11 +93,15 @@ export default {
     const columnCount = computed(()=>{
       return props.columns.length +2
     })
-
     const currentPage = ref(1)
     const totalPage = ref(10)
 
-    return {columnCount, currentPage, totalPage}
+    // 全部行的選取狀態
+    const selectAllState = ref('none')
+    // 行的選取狀態
+    const rowSelectStatus = ref(props.data.map(_=>false))
+
+    return { selectAllState, columnCount, currentPage, totalPage, rowSelectStatus}
   }
 }
 </script>
