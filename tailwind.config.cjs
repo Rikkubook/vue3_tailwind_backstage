@@ -28,6 +28,9 @@ module.exports = {
       },
       fontFamily:{
         sans:['Noto Sans TC', ...fontFamily.sans] //添無趁線加字體
+      },
+      boxShadow: {
+        'lg-top': '0 -10px 15px -3px rgb(0 0 0 / 0.1), 0 -4px 6px -4px rgb(0 0 0 / 0.1);'
       }
     },
   },

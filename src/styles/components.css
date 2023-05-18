@@ -5,5 +5,15 @@
   .btn {
     @apply inline-flex justify-center px-6 py-2 border border-transparent text-sm rounded-lg  transition-colors  focus:outline-none focus:ring-offset-2
   }
+
+  .btn-base {
+    @apply px-6 py-2 rounded-lg
+  }
+
+  .btn-sm {
+    @apply px-4 py-1 rounded-sm
+  }
 }
+
+/* @layer components內可以直接使用斷點設定 */
 
