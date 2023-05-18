@@ -3,7 +3,6 @@ import mitt from 'mitt'
 
 const confirmEvents = mitt();
 
-
 const showModal = ref(false)
 const confirmTitle = ref('')
 const handleSuccess = ()=>{ 
