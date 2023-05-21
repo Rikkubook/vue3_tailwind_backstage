@@ -6,7 +6,9 @@
         <PrimaryButton to="/posts"> 新增</PrimaryButton>
       </template>
     </PageHeader>
+    <SearchFilter class="mt-6"></SearchFilter>
     <Card class="mt-6" stretch>
+
       <Table
         :columns="columns"
         :data="data"

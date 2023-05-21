@@ -6,6 +6,11 @@
     @apply block w-full rounded-md border-gray-300 focus:border-violet-600 focus:ring-violet-600;
   }
 
+  .form-input-sm,
+  .form-select-sm{
+    @apply px-2 py-1
+  }
+
   .form-textarea{
     @apply resize-none;
   }
