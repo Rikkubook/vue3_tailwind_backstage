@@ -7,7 +7,12 @@
       </template>
     </PageHeader>
     <Card class="mt-6" stretch>
-      <Table :columns="columns" :data="data">
+      <Table
+        :columns="columns"
+        :data="data"
+        confirm-delete-text="確定要刪除文章嗎？"
+        @delete-selected="handleDeleteSelectedPost"
+      >
         <!-- https://vuejs.org/guide/components/slots.html#scoped-slots -->
         <template #column-title="{record, value}">
           <RouterLink :to="`/posts/${record.id}`" class="link font-normal">
@@ -35,6 +40,7 @@
 </template>
 
 <script>
+import { successNotify } from '@/composables/useNotification'
 import {ref} from 'vue'
 
 export default{
@@ -74,11 +80,18 @@ export default{
       },
     ])
 
-    const handleDeletePost = (record)=>{
-      console.log('a', record)
+    const handleDeletePost = (deleteRecord)=>{
+      // 刪除單一文章
+      data.value = data.value.filter((record)=> deleteRecord.id !== record.id)
+      successNotify('文章刪除成功')
+    }
+    const handleDeleteSelectedPost = (ids)=>{
+      // 刪除選取文章
+      data.value = data.value.filter((record)=> !ids.includes(record.id))
+      successNotify('文章刪除成功')
     }
 
-    return {data, columns, handleDeletePost}
+    return {data, columns, handleDeletePost, handleDeleteSelectedPost}
   }
 }
 

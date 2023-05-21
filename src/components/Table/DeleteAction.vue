@@ -25,6 +25,7 @@ export default {
 
     const handleDelete = async () =>{
       if( await useConfirm(props.confirmDeleteText)){
+        console.log(props.record)
         emit('delete', props.record)
       }
 

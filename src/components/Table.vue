@@ -91,6 +91,7 @@
 <script>
 import {ref, computed, watch} from 'vue'
 import { useConfirm } from '@/composables/useConfirmModal';
+import { nextTick } from 'vue';
 
 export default {
   emits:['delete-selected'],
@@ -112,7 +113,7 @@ export default {
       default: '~當前沒有任何資料'
     },
   },
-  setup (props) {
+  setup (props,{emit}) {
     const columnCount = computed(()=>{
       return props.columns.length +2
     })
@@ -159,7 +160,10 @@ export default {
     const deleteRows = async()=>{
       // 把要刪除的 ID 傳出去到資料層
       if(await useConfirm(props.confirmDeleteText)){
-        emit('delete-selected', selectedIds)
+        emit('delete-selected', selectedIds.value)
+        await nextTick() // dom會改變
+        rowSelectStatus.value = props.data.map(_=>false) // 將預售改回
+        selectAllState.value = 'none'
       }
     }
   
