@@ -6,7 +6,10 @@
         <PrimaryButton to="/posts"> 新增</PrimaryButton>
       </template>
     </PageHeader>
-    <SearchFilter class="mt-6"></SearchFilter>
+    <SearchFilter class="mt-6"
+      @filter="handleFilter"
+      @search="handleSearch"
+    ></SearchFilter>
     <Card class="mt-6" stretch>
 
       <Table
@@ -93,7 +96,17 @@ export default{
       successNotify('文章刪除成功')
     }
 
-    return {data, columns, handleDeletePost, handleDeleteSelectedPost}
+    const handleFilter = (obj)=>{
+      console.log(obj)
+    }
+
+    const handleSearch = (value)=>{
+      console.log(value)
+    }
+
+    
+
+    return {data, columns, handleDeletePost, handleDeleteSelectedPost, handleFilter, handleSearch}
   }
 }
 

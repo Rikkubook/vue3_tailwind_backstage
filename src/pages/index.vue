@@ -28,7 +28,7 @@
         trending="53"
         stretch
       ></TrendingCard>
-      <Card class="lg:col-span-8 min-w-0" stretch>
+      <Card class="col-span-12 lg:col-span-8 min-w-0" stretch>
         <div class="h-[400px] flex flex-col p-5">
           <h2 class=" text-xl font-semibold tracking-wide text-gray-700">瀏覽人次</h2>
           <div class="flex-grow min-h-0 py-4">
@@ -36,7 +36,7 @@
           </div>
         </div>
       </Card>
-      <Card class="lg:col-span-4 min-w-0" stretch>
+      <Card class="col-span-12 lg:col-span-4 min-w-0" stretch>
         <div class="h-[400px] flex flex-col p-5">
           <h2 class=" text-xl font-semibold tracking-wide text-gray-700">瀏覽裝置</h2>
           <div class="flex-grow min-h-0 py-4">
