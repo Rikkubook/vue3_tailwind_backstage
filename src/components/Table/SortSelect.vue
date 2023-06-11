@@ -2,7 +2,7 @@
   <Listbox v-model="selected">
     <div class="relative">
       <ListboxButton
-        class="form-select pl-4 text-gray-600 text-left"
+        class="form-select pl-4 text-gray-600 text-left shadow rounded-md"
       >
         <span class="block truncate">排序 {{ selectedValue }}</span>
         <span

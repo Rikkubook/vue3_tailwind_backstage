@@ -1,7 +1,7 @@
 <template>
-  <div class="flex  flex-col min-h-screen sm:flex-row">
+  <div class="flex flex-col sm:flex-row">
     <!-- begin::左側選單區域 -->
-    <div class="flex flex-shrink-0 flex-col justify-between  bg-violet-600 text-white w-full sm:w-64 ">
+    <div class="flex flex-shrink-0 flex-col justify-between  bg-violet-600 text-white w-full sm:w-64 sm:fixed sm-inset-y-0 sm:min-h-screen ">
       <!-- begin::Logo區域 -->
       <div class="flex  justify-between items-center sm:justify-center h-16 px-4">
         <div class="flex justify-center items-center h-16">
@@ -103,7 +103,7 @@
 
     </div>
     <!-- end::左側選單區域 -->
-    <div class="flex-grow bg-gray-100 overflow-x-auto min-w-0">
+    <div class="flex-grow min-w-0 bg-gray-50 overflow-x-auto sm:pl-64">
       <div class="p-6 sm:px-10 sm:py-8">
         <slot></slot>
       </div>

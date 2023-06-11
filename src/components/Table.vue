@@ -5,6 +5,7 @@
         <tr class="border-b border-gray-200">
           <th class="pl-5 py-3 text-left">
             <SelectAllCheckbox
+              :disabled="selectAllDisable"
               :state="selectAllState"
               @update:state="updateSelectAllState"
             />
@@ -68,6 +69,7 @@
   <Pagination
     v-model:current-page="currentPage"
     :total-page="totalPage"
+    class="border-t border-gray-200"
   />
   <!-- <input type="checkbox" v-model="showActionBar"> -->
   <ActionsBar :show="showActionBar">
@@ -132,6 +134,10 @@ export default {
       .map(data => data.id) 
     })
 
+    const selectAllDisable = computed(()=>{
+      return props.data.length === 0
+    })
+
     const updateSelectAllState =  state =>{
       selectAllState.value = state
 
@@ -174,6 +180,7 @@ export default {
       selectAllState,
       rowSelectStatus,
       selectedIds,
+      selectAllDisable,
       updateSelectAllState,
       updateRowSelectStatus,
       showActionBar,

@@ -1,7 +1,7 @@
 <template>
   <div class="flex item-center">
     <!-- ui 與 menu 差異在於可以在裡面進行動作例如確認與取消 -->
-    <div class="flex flex-grow md:flex-grow-0">
+    <div class="flex flex-grow md:flex-grow-0 shadow rounded-md">
       <Popover class="relative flex-shrink-0 -mr-px focus:z-[1]">
         <PopoverButton class="form-select pl-4 text-gray-600 rounded-r-none">
           篩選
