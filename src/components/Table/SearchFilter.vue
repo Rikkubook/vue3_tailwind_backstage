@@ -1,7 +1,7 @@
 <template>
   <div class="flex item-center">
     <!-- ui 與 menu 差異在於可以在裡面進行動作例如確認與取消 -->
-    <div class="flex flex-grow sm:flex-grow-0">
+    <div class="flex flex-grow md:flex-grow-0">
       <Popover class="relative flex-shrink-0 -mr-px focus:z-[1]">
         <PopoverButton class="form-select pl-4 text-gray-600 rounded-r-none">
           篩選
@@ -115,14 +115,14 @@
         v-model="search"
         type="text"
         placeholder="搜尋..."
-        class="form-input placeholder-gray-400 focus:z-[1] rounded-l-none sm:max-w-[200px]"
+        class="form-input placeholder-gray-400 focus:z-[1] rounded-l-none md:max-w-[200px]"
         @keyup.enter="submitSearch"
       >
     </div>
 
     <secondaryButton
       type="button"
-      class="ml-2 text-gray-400"
+      class="ml-2 text-gray-400 flex-shrink-0"
       @click="reset"
     >清除</secondaryButton>
   </div>

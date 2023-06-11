@@ -6,10 +6,17 @@
         <PrimaryButton to="/posts"> 新增</PrimaryButton>
       </template>
     </PageHeader>
-    <SearchFilter class="mt-6"
-      @filter="handleFilter"
-      @search="handleSearch"
-    ></SearchFilter>
+    <div class="mt-6 md:flex justify-between items-center">
+      <SearchFilter
+        @filter="handleFilter"
+        @search="handleSearch"
+      ></SearchFilter>
+      <SortSelect
+        v-model="sort"
+        class="mt-4 md:mt-0 md:ml-2"
+      />
+    </div>
+
     <Card class="mt-6" stretch>
 
       <Table
@@ -85,6 +92,8 @@ export default{
       },
     ])
 
+    const sort = ref('asc')
+
     const handleDeletePost = (deleteRecord)=>{
       // 刪除單一文章
       data.value = data.value.filter((record)=> deleteRecord.id !== record.id)
@@ -106,7 +115,7 @@ export default{
 
     
 
-    return {data, columns, handleDeletePost, handleDeleteSelectedPost, handleFilter, handleSearch}
+    return {data, columns, sort, handleDeletePost, handleDeleteSelectedPost, handleFilter, handleSearch}
   }
 }
 
