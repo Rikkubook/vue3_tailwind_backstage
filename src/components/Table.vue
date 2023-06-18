@@ -3,7 +3,7 @@
     <table class="w-full">
       <thead>
         <tr class="border-b border-gray-200">
-          <th class="pl-5 py-3 text-left">
+          <th v-if="showSelection" class="pl-5 py-3 text-left">
             <SelectAllCheckbox
               :disabled="selectAllDisable"
               :state="selectAllState"
@@ -18,7 +18,7 @@
           >
             {{  column.label }}
           </th>
-          <th class="px-5 py-3 text-left text-gray-400 text-sm font-medium tracking-wider whitespace-nowrap"></th>
+          <th v-if="showActions" class="px-5 py-3 text-left text-gray-400 text-sm font-medium tracking-wider whitespace-nowrap"></th>
         </tr>
       </thead>
       <tbody>
@@ -27,7 +27,7 @@
           :key="record.id"
           :class="{'bg-violet-50': rowSelectStatus[index]} "
         >
-          <td class="pl-5 py-3 text-gray-600 whitespace-nowrap">
+          <td v-if="showSelection" class="pl-5 py-3 text-gray-600 whitespace-nowrap">
             <!-- https://penueling.com/%E7%B7%9A%E4%B8%8A%E5%AD%B8%E7%BF%92/vue3%E4%BD%BF%E7%94%A8v-model%E7%B6%81%E5%AE%9A/ -->
             <!-- https://ithelp.ithome.com.tw/m/articles/10268187 -->
             <SelectRowCheckbox
@@ -50,7 +50,7 @@
             </slot>
           </td>
 
-          <td>
+          <td v-if="showActions">
             <slot
               name="actions"
               :record="record"
@@ -67,6 +67,7 @@
     </table>
   </div>
   <Pagination
+    v-if="showPaginator"
     v-model:current-page="currentPage"
     :total-page="totalPage"
     class="border-t border-gray-200"
@@ -114,10 +115,22 @@ export default {
       type: String,
       default: '~當前沒有任何資料'
     },
+    showSelection:{
+      type: Boolean,
+      default: true
+    },
+    showActions:{
+      type: Boolean,
+      default: true
+    },
+    showPaginator:{
+      type: Boolean,
+      default: true
+    },
   },
   setup (props,{emit}) {
     const columnCount = computed(()=>{
-      return props.columns.length +2
+      return props.columns.length + Number(props.showSelection)+ Number(props.showActions)
     })
     const currentPage = ref(1)
     const totalPage = ref(10)
