@@ -45,7 +45,7 @@
         </div>
       </Card>
       <Card class="col-span-12 lg:col-span-8 min-w-0 h-full" stretch>
-        <div class="flex justify-between p-5">
+        <div class="flex justify-between p-5 pb-0">
           <h2 class=" text-xl font-semibold tracking-wide text-gray-700">熱門文章</h2>
           <RouterLink class="link flex items-center font-normal" to="/posts">
             全部文章
@@ -53,6 +53,7 @@
           </RouterLink>
         </div>
         <Table
+          class="mt-4"
           :columns="postsColumns"
           :data="postsData"
           :show-selection="false"
@@ -80,7 +81,23 @@
         </Table>
       </Card>
       <Card class="col-span-12 lg:col-span-4 min-w-0 h-full" stretch>
-        
+        <div class="p-5">
+          <h2 class=" text-xl font-semibold tracking-wide text-gray-700">最新留言</h2>
+          <ul class="mt-4 space-y-4">
+            <li class="flex" v-for="comment in comments" :key="comment.id">
+              <img class="w-8 h-8 rounded-full" :src="comment.author_avatar" :alt="comment.post_id">
+              <div class="mt-1 ml-4 flex-grow">
+                <p class="text-gray-800 font-medium tracking-wide ">{{  comment.author_name }}</p>
+                <div class="mt-2 text-gray-500 test-sm">
+                  {{ comment.content }}
+                </div>
+                <div class="mt-1 py-1.5 px-3 bg-gray-100 rounded text-gray500 text-sm">
+                    留言文章：<RouterLink :to="`/posts/${comment.post_id}`" class="link">{{ comment.post_title }}</RouterLink>
+                </div>
+              </div>
+            </li>
+          </ul>
+        </div>
       </Card>
     </div>
 
@@ -138,6 +155,32 @@ export default {
         created_at: '2012/12/03'
       }
     ])
+    const comments = ref([
+      {
+        id:1,
+        author_name:"Rikku",
+        author_avatar: "https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&quality=85&auto=format&fit=max&s=a52bbe202f57ac0f5ff7f47166906403",
+        content: "哇～太棒了！",
+        post_id: 1,
+        post_title: "文章1"
+      },
+      {
+        id:2,
+        author_name:"Rikku",
+        author_avatar: "https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&quality=85&auto=format&fit=max&s=a52bbe202f57ac0f5ff7f47166906403",
+        content: "讚喔",
+        post_id: 2,
+        post_title: "文章2"
+      },
+      {
+        id:3,
+        author_name:"Lulu",
+        author_avatar: "https://i.guim.co.uk/img/media/26392d05302e02f7bf4eb143bb84c8097d09144b/446_167_3683_2210/master/3683.jpg?width=1200&quality=85&auto=format&fit=max&s=a52bbe202f57ac0f5ff7f47166906403",
+        content: "哈嚕",
+        post_id: 2,
+        post_title: "文章2"
+      }
+    ])
 
     onMounted(()=> {
       const lineDate = ['6/21(一)', '6/22(二)','6/23(三)', '6/24(四)', '6/25(五)', '6/26(六)', '6/27(日)']
@@ -171,7 +214,7 @@ export default {
       useBarChart(barChartE1, barDate, barDatasets )
     })
 
-    return { lineChartE1, barChartE1, postsColumns, postsData}
+    return { lineChartE1, barChartE1, postsColumns, postsData, comments}
   }
 }
 </script>
