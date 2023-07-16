@@ -22,4 +22,12 @@
   .form-checkbox{
     @apply rounded;
   }
+
+  .form-label{
+    @apply mb-2 inline-block text-sm text-gray-600 tracking-wider;
+  }
+
+  .form-error{
+    @apply mt-1 text-sm text-red-500;
+  }
 }
