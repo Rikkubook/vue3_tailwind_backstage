@@ -10,9 +10,9 @@
       </template>
     </PageHeader>
     <Card class="mt-6">
-      <div class="p-4">
+      <div class="p-4 grid gap-6 lg:grid-cols-12">
         <!-- 左側文章 -->
-        <div class="space-y-4">
+        <div class="space-y-6 lg:col-span-8 xl:col-span-9">
           <div>
             <label for="title" class="form-label">文章標題</label>
             <input type="text" id="title" class="form-input" v-model="form.title">
@@ -23,9 +23,14 @@
             <textarea type="text" id="content" class="form-textarea h-[200px]" v-model="form.content"></textarea>
             <div class="form-error">請輸入內容</div>
           </div>
+          <!-- 電腦版送出按鈕 -->
+          <div class="hidden lg:flex lg:justify-end lg:items-center lg:space-x-4">
+            <SecondaryButton @click="submitDraft">保存草稿</SecondaryButton>
+            <PrimaryButton @click="submit">發布文章</PrimaryButton>
+          </div>
         </div>
         <!-- 右側側邊欄 -->
-        <div class="space-y-4">
+        <div class="space-y-6 lg:col-span-4 xl:col-span-3">
           <div>
             <label for="image" class="form-label">縮圖</label>
             <div class="aspect-w-16 aspect-h-9">
@@ -33,11 +38,30 @@
                 <heroicons-outline-photograph class="h-10 w-10 "/>
               </div>
             </div>
+            <PrimaryButton class="mt-3 w-full flex items-center">
+              <heroicons-outline-cloud-upload class="mr-1 h-5 w-5"/> 上傳圖片
+            </PrimaryButton>
+            <div class="mt-2 text-gray-400 text-sm">圖片最大5MB</div>
           </div>
-          <div></div>
-          <div></div>
+          <div>
+            <div>
+              <label for="description" class="form-label">文章簡介</label>
+              <textarea type="text" id="description" class="form-textarea h-[200px]" v-model="form.description"></textarea>
+              <div class="form-error">請輸入內容</div>
+            </div>
+          </div>
+          <div>
+            <div>
+            <label for="tags" class="form-label">文章標籤</label>
+            <input type="text" id="tags" class="form-input" v-model="form.tags">
+            <div class="form-error">請輸入標題</div>
+          </div>
+          </div>
           <!-- 手機版送出按鈕 -->
-          <div></div>
+          <div class="grid grid-cols-2 gap-4 lg:hidden">
+            <SecondaryButton @click="submitDraft">保存草稿</SecondaryButton>
+            <PrimaryButton @click="submit">發布文章</PrimaryButton>
+          </div>
         </div>
       </div>
     </Card>
@@ -46,15 +70,33 @@
 
 <script>
 import {reactive} from 'vue'
+import { useRouter } from 'vue-router';
+import { successNotify } from '@/composables/useNotification';
 
 export default{
-  setup(){
-    const form = reactive({
-      title: '',
-      content: `嗨嗨嗨囉～`
-    })
+    setup() {
+        const router = useRouter()
+        const form = reactive({
+            title: "",
+            content: `嗨嗨嗨囉～`,
+            image: null,
+            description: "",
+            tags: ""
+        });
 
-    return {form} 
-  }
+        const submitDraft = ()=>{
+          router.push('./posts').then(()=>{
+            successNotify('草稿保存成功')
+          })
+        }
+        const submit = ()=>{
+          router.push('./posts').then(()=>{
+            successNotify('文章發布成功')
+          })
+        }
+
+
+        return { form, submitDraft, submit };
+    },
 }
 </script>
