@@ -13,16 +13,8 @@
       <div class="p-4 grid gap-6 lg:grid-cols-12">
         <!-- 左側文章 -->
         <div class="space-y-6 lg:col-span-8 xl:col-span-9">
-          <div>
-            <label for="title" class="form-label">文章標題</label>
-            <input type="text" id="title" class="form-input" v-model="form.title">
-            <div class="form-error">請輸入標題</div>
-          </div>
-          <div>
-            <label for="content" class="form-label">文章內容</label>
-            <textarea type="text" id="content" class="form-textarea h-[200px]" v-model="form.content"></textarea>
-            <div class="form-error">請輸入內容</div>
-          </div>
+          <TextInput :label="'文章標題'" :id="'title'" v-model="form.title" :error="'請輸入標題'" required></TextInput>
+          <Textarea class="h-[200px]" :label="'文章內容'" :id="'content'" v-model="form.content" :error="'請輸入內容'" required></Textarea>
           <!-- 電腦版送出按鈕 -->
           <div class="hidden lg:flex lg:justify-end lg:items-center lg:space-x-4">
             <SecondaryButton @click="submitDraft">保存草稿</SecondaryButton>
@@ -43,19 +35,11 @@
             </PrimaryButton>
             <div class="mt-2 text-gray-400 text-sm">圖片最大5MB</div>
           </div>
+          <TextInput class="h-[200px]" :label="'文章簡介'" :id="'description'" v-model="form.description" :error="'請輸入簡介'" required></TextInput>
           <div>
-            <div>
-              <label for="description" class="form-label">文章簡介</label>
-              <textarea type="text" id="description" class="form-textarea h-[200px]" v-model="form.description"></textarea>
-              <div class="form-error">請輸入內容</div>
-            </div>
-          </div>
-          <div>
-            <div>
             <label for="tags" class="form-label">文章標籤</label>
             <input type="text" id="tags" class="form-input" v-model="form.tags">
             <div class="form-error">請輸入標題</div>
-          </div>
           </div>
           <!-- 手機版送出按鈕 -->
           <div class="grid grid-cols-2 gap-4 lg:hidden">
