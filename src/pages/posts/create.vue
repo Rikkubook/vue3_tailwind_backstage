@@ -13,8 +13,8 @@
       <div class="p-4 grid gap-6 lg:grid-cols-12">
         <!-- 左側文章 -->
         <div class="space-y-6 lg:col-span-8 xl:col-span-9">
-          <TextInput :label="'文章標題'" :id="'title'" v-model="form.title" :error="'請輸入標題'" required></TextInput>
-          <Textarea class="h-[200px]" :label="'文章內容'" :id="'content'" v-model="form.content" :error="'請輸入內容'" required></Textarea>
+          <TextInput label="文章標題" id="title" v-model="form.title" :error="'請輸入標題'" required></TextInput>
+          <Textarea class="h-[200px]" label="文章內容" id="content" v-model="form.content" :error="'請輸入內容'" required></Textarea>
           <!-- 電腦版送出按鈕 -->
           <div class="hidden lg:flex lg:justify-end lg:items-center lg:space-x-4">
             <SecondaryButton @click="submitDraft">保存草稿</SecondaryButton>
@@ -23,19 +23,13 @@
         </div>
         <!-- 右側側邊欄 -->
         <div class="space-y-6 lg:col-span-4 xl:col-span-3">
-          <div>
-            <label for="image" class="form-label">縮圖</label>
-            <div class="aspect-w-16 aspect-h-9">
-              <div class=" flex justify-center items-center bg-gray-400 text-white rounded-md ">
-                <heroicons-outline-photograph class="h-10 w-10 "/>
-              </div>
-            </div>
-            <PrimaryButton class="mt-3 w-full flex items-center">
-              <heroicons-outline-cloud-upload class="mr-1 h-5 w-5"/> 上傳圖片
-            </PrimaryButton>
-            <div class="mt-2 text-gray-400 text-sm">圖片最大5MB</div>
-          </div>
-          <TextInput class="h-[200px]" :label="'文章簡介'" :id="'description'" v-model="form.description" :error="'請輸入簡介'" required></TextInput>
+          <ImageUpload
+            label="縮圖"
+            id="image"
+            v-model="form.image"
+            :default-image="defaultImage"
+          />
+          <TextInput class="h-[200px]" label="文章簡介" id="description" v-model="form.description" :error="'請輸入簡介'" required></TextInput>
           <div>
             <label for="tags" class="form-label">文章標籤</label>
             <input type="text" id="tags" class="form-input" v-model="form.tags">
@@ -53,13 +47,13 @@
 </template>
 
 <script>
-import {reactive} from 'vue'
+import { ref, reactive} from 'vue'
 import { useRouter } from 'vue-router';
 import { successNotify } from '@/composables/useNotification';
 
 export default{
     setup() {
-        const router = useRouter()
+        const router = useRouter();
         const form = reactive({
             title: "",
             content: `嗨嗨嗨囉～`,
@@ -67,20 +61,18 @@ export default{
             description: "",
             tags: ""
         });
-
-        const submitDraft = ()=>{
-          router.push('./posts').then(()=>{
-            successNotify('草稿保存成功')
-          })
-        }
-        const submit = ()=>{
-          router.push('./posts').then(()=>{
-            successNotify('文章發布成功')
-          })
-        }
-
-
-        return { form, submitDraft, submit };
-    },
+        const defaultImage = ref('https://fakeimg.pl/440x320/282828/eae0d0/?retina=1')
+        const submitDraft = () => {
+            router.push('./posts').then(() => {
+                successNotify('草稿保存成功');
+            });
+        };
+        const submit = () => {
+            router.push('./posts').then(() => {
+                successNotify('文章發布成功');
+            });
+        };
+        return { form, defaultImage, submitDraft, submit };
+    }
 }
 </script>
