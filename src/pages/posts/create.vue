@@ -10,6 +10,7 @@
       </template>
     </PageHeader>
     <Card class="mt-6">
+      <Loading :show="loading" :text="'保存中...'"/>
       <div class="p-4 grid gap-6 lg:grid-cols-12">
         <!-- 左側文章 -->
         <div class="space-y-6 lg:col-span-8 xl:col-span-9">
@@ -53,9 +54,11 @@
 import { ref, reactive} from 'vue'
 import { useRouter } from 'vue-router';
 import { successNotify } from '@/composables/useNotification';
+import { promiseTimeout } from '@vueuse/shared';
 
 export default{
     setup() {
+        const loading = ref(false)
         const router = useRouter();
         const form = reactive({
             title: "",
@@ -67,20 +70,26 @@ export default{
         const defaultImage = ref('https://fakeimg.pl/440x320/282828/eae0d0/?retina=1')
 
         const tagsAutocompleteItems =  [
-        'Spain','France','USA','Germany','China'
-      ]
+          'Spain','France','USA','Germany','China'
+        ]
 
-        const submitDraft = () => {
+        const submitDraft =async() => {
+            loading.value = true
+            await promiseTimeout(1000)
+            loading.value = false
             router.push('./posts').then(() => {
                 successNotify('草稿保存成功');
             });
         };
-        const submit = () => {
+        const submit = async() => {
+            loading.value = true
+            await promiseTimeout(1000)
+            loading.value = false
             router.push('./posts').then(() => {
                 successNotify('文章發布成功');
             });
         };
-        return { form, defaultImage, tagsAutocompleteItems, submitDraft, submit };
+        return { loading, form, defaultImage, tagsAutocompleteItems, submitDraft, submit };
     }
 }
 </script>
