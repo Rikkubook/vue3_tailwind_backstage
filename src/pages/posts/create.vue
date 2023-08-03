@@ -30,11 +30,14 @@
             :default-image="defaultImage"
           />
           <TextInput class="h-[200px]" label="文章簡介" id="description" v-model="form.description" :error="'請輸入簡介'" required></TextInput>
-          <div>
-            <label for="tags" class="form-label">文章標籤</label>
-            <input type="text" id="tags" class="form-input" v-model="form.tags">
-            <div class="form-error">請輸入標題</div>
-          </div>
+          
+          <TagsInput
+            label="文章標籤"
+            id="tags"
+            v-model="form.tags"
+            :autocompleteItems="tagsAutocompleteItems"
+          ></TagsInput>
+
           <!-- 手機版送出按鈕 -->
           <div class="grid grid-cols-2 gap-4 lg:hidden">
             <SecondaryButton @click="submitDraft">保存草稿</SecondaryButton>
@@ -59,9 +62,14 @@ export default{
             content: `嗨嗨嗨囉～`,
             image: null,
             description: "",
-            tags: ""
+            tags: []
         });
         const defaultImage = ref('https://fakeimg.pl/440x320/282828/eae0d0/?retina=1')
+
+        const tagsAutocompleteItems =  [
+        'Spain','France','USA','Germany','China'
+      ]
+
         const submitDraft = () => {
             router.push('./posts').then(() => {
                 successNotify('草稿保存成功');
@@ -72,7 +80,7 @@ export default{
                 successNotify('文章發布成功');
             });
         };
-        return { form, defaultImage, submitDraft, submit };
+        return { form, defaultImage, tagsAutocompleteItems, submitDraft, submit };
     }
 }
 </script>

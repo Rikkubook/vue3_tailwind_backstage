@@ -12,6 +12,7 @@
     "@headlessui/vue": "^1.7.8",
     "@hennge/vue3-pagination": "^1.0.17",
     "@kyvg/vue3-notification": "^2.9.0",
+    "@sipec/vue3-tags-input": "^3.0.4",
     "@vueuse/core": "^9.12.0",
     "chart.js": "^4.3.0",
     "mitt": "^3.0.0",
