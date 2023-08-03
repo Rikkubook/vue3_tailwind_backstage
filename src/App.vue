@@ -1,7 +1,4 @@
 <script setup>
-import AppConfirmModal from './sections/AppConfirmModal.vue';
-import AppNotification from './sections/AppNotification.vue';
-
 </script>
 
 <template>
