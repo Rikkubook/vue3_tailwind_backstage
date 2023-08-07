@@ -3,7 +3,9 @@
     <!-- 左側文章 -->
     <div class="space-y-6 lg:col-span-8 xl:col-span-9">
       <TextInput label="文章標題" id="title" v-model="form.title" :error="'請輸入標題'" required></TextInput>
-      <Textarea class="h-[200px]" label="文章內容" id="content" v-model="form.content" :error="'請輸入內容'" required></Textarea>
+      
+      <Editor class="h-[200px]" label="文章內容" id="content" v-model="form.content" :error="'請輸入內容'"></Editor>
+      <!-- <Textarea class="h-[200px]" label="文章內容" id="content" v-model="form.content" :error="'請輸入內容'" required></Textarea> -->
       <!-- 電腦版送出按鈕 -->
       <div class="hidden lg:flex lg:justify-end lg:items-center lg:space-x-4">
         <SecondaryButton @click="submitDraft">保存草稿</SecondaryButton>
