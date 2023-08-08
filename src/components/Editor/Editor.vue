@@ -16,6 +16,7 @@
 import { watch } from 'vue'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
+import Link from '@tiptap/extension-link'
 
 export default {
   components: {
@@ -36,6 +37,9 @@ export default {
       content: props.modelValue,
       extensions: [
         StarterKit,
+        Link.configure({
+          openOnClick: false, // 預防編輯時自動打開
+        })
       ],
       editorProps: { // typography 內部渲染樣式
         attributes: {
