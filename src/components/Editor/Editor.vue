@@ -5,7 +5,7 @@
     </label>
     <div v-if="editor" class="form-input p-0 focus-within:border-violet-600 focus-within:ring-1 focus-within:ring-violet-600"> 
       <!-- 多一層判斷是否已渲染 editor-->
-      <EditorMenuBar :editor="editor"/>
+      <EditorMenuBar/>
       <EditorContent class="px-3 py-2" :editor="editor" />
     </div>
     <div v-if="error" class="form-error">{{ error }}</div>
@@ -13,10 +13,12 @@
 </template>
 
 <script>
-import { watch } from 'vue'
+import { provide, watch } from 'vue'
 import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
-import Link from '@tiptap/extension-link'
+import mitt from 'mitt'
+import Link from './Link'
+
 
 export default {
   components: {
@@ -33,17 +35,16 @@ export default {
     wrapperClass: [String, Array, Object]
   },
   setup(props, { emit }) {
+    const editorEvent = mitt()
     const editor = useEditor({ // 改vue3寫法
       content: props.modelValue,
       extensions: [
         StarterKit,
-        Link.configure({
-          openOnClick: false, // 預防編輯時自動打開
-        })
+        Link(editorEvent)
       ],
       editorProps: { // typography 內部渲染樣式
         attributes: {
-          class: 'prose prose-sm sm:prose mx-auto focus:outline-none !max-w-full min-h-[300px]',
+          class: 'prose prose-sm  prose-violet sm:prose sm:prose-violet mx-auto focus:outline-none !max-w-full min-h-[300px]',
         },
       },
       onUpdate: () => {
@@ -59,6 +60,8 @@ export default {
       editor.value.commands.setContent(value, false)
     })
 
+    provide('editor', editor) // 要傳響應資料
+    provide('editorEvent', editorEvent) // 要傳響應資料
     return { editor }
   },
 }
