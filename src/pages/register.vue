@@ -8,14 +8,16 @@
   
       <Card class="mt-8 p-6 sm:p-8">
         <form class="space-y-8" @submit.prevent="handleSubmit">
+          <TextInput label="姓名" id="name" v-model="form.name" :error="'請輸入名稱'" required></TextInput>
           <TextInput label="Email" id="email" type="email" v-model="form.email" :error="'請輸入Email'" required></TextInput>
           <TextInput label="密碼" id="password" type="password" v-model="form.password" :error="'請輸入密碼'" required></TextInput>
-          <PrimaryButton type="submit" class="w-full" :loading="loading"> 登入</PrimaryButton>
+          <TextInput label="確認密碼" id="confirmPassword" type="password" v-model="form.confirmPassword" :error="'請輸入確認密碼'" required></TextInput>
+          <PrimaryButton type="submit" class="w-full" :loading="loading">註冊</PrimaryButton>
         </form>
         <hr class="mt-6 mb-4 border-gray-300">
         <div class="text-center text-gray-600">
-          沒有帳號?
-          <RouterLink to="/register" class="link">馬上註冊</RouterLink>
+          已有帳號?
+          <RouterLink to="/login" class="link">馬上登入</RouterLink>
         </div>
       </Card>
     </div>
@@ -31,8 +33,10 @@ export default {
   setup(){
     const router = useRouter()
     const form = reactive({
+      name: '',
       email: '',
       password: '',
+      confirmPassword: ''
     })
     const loading = ref(false)
 
