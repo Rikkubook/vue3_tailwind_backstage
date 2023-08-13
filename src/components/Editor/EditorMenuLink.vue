@@ -48,8 +48,8 @@
 
 <script>
 import { onBeforeUnmount } from 'vue';
-import { watch } from 'vue';
-import {ref, nextTick, inject} from 'vue';
+import {ref, nextTick, inject, watch} from 'vue';
+
 export default {
   props: {
     icon: {

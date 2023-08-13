@@ -18,7 +18,7 @@ import { useEditor, EditorContent } from '@tiptap/vue-3'
 import StarterKit from '@tiptap/starter-kit'
 import mitt from 'mitt'
 import Link from './Link'
-
+import Image from '@tiptap/extension-image'
 
 export default {
   components: {
@@ -40,7 +40,8 @@ export default {
       content: props.modelValue,
       extensions: [
         StarterKit,
-        Link(editorEvent)
+        Link(editorEvent),
+        Image
       ],
       editorProps: { // typography 內部渲染樣式
         attributes: {
