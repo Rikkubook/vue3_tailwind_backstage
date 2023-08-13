@@ -4,7 +4,9 @@
     :type="buttonType"
     :to="to"
     class="btn text-white bg-violet-500 hover:bg-violet-600 focus:ring-violet-500"
+    :disabled="loading"
   >
+    <LoadingIcon v-if="loading" class="w-4 h-4 mr-1"></LoadingIcon>
     <slot></slot>
   </component>
 </template>
@@ -16,7 +18,11 @@ export default {
   props:{
     is: String,
     type: String,
-    to: String
+    to: String,
+    loading:{
+      type: Boolean,
+      default: false
+    }
   },
   setup(props){
     return { ...useButton(props) }
