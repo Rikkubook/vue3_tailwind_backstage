@@ -10,15 +10,16 @@
       </template>
     </PageHeader>
     <Card class="mt-6">
+      <CardContent>
+        <PostForm
+          v-model="form"
+          :default-image="defaultImage"
+          :tag-autocomplete-items="tagsAutocompleteItems"
+          @submit="submit"
+          @submit-draft="submitDraft"
+        ></PostForm>
+      </CardContent>
       <Loading :show="loading" :text="'保存中...'"/>
-      <PostForm
-        class="p-6 2xl:p-8"
-        v-model="form"
-        :default-image="defaultImage"
-        :tag-autocomplete-items="tagsAutocompleteItems"
-        @submit="submit"
-        @submit-draft="submitDraft"
-      ></PostForm>
     </Card>
   </Layout>
 </template>
