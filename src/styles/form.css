@@ -3,7 +3,9 @@
   .form-textarea,
   .form-select,
   .form-multiselect{
-    @apply block w-full rounded-md border-gray-300 focus:border-violet-600 focus:ring-violet-600;
+    @apply block w-full rounded-md border-gray-300   ;
+    @apply focus:border-violet-600 focus:ring-violet-600;
+    @apply indigo:focus:border-indigo-600 indigo:focus:ring-indigo-600;
   }
 
   .form-input-sm,
@@ -16,7 +18,9 @@
   }
 
   .form-radio, .form-checkbox{
-    @apply border-gray-400 text-violet-600 focus:ring-violet-600 disabled:bg-gray-100;
+    @apply border-gray-400  disabled:bg-gray-100;
+    @apply text-violet-600  focus:ring-violet-600;
+    @apply indigo:text-indigo-600 indigo:focus:ring-indigo-600;
   }
 
   .form-checkbox{
@@ -33,5 +37,6 @@
 }
 
 img.ProseMirror-selectednode {
-  @apply outline outline-[3px] outline-violet-200;
+  @apply outline outline-[3px] outline-violet-200 ;
+  @apply indigo:outline-indigo-200;
 }

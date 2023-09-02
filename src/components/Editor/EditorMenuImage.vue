@@ -2,7 +2,7 @@
   <div class="relative">
     <button
       class="mr-1 w-7 h-7 p-1 rounded"
-      :class="showPopover? 'bg-violet-500 text-white':'hover:bg-violet-500 hover:text-white'"
+      :class="showPopover? 'bg-violet-500 indigo:bg-indigo-500 text-white':'hover:bg-violet-500 indigo:hover:bg-indigo-500 hover:text-white'"
       @click="handleAction"
       :title="title"
     >
@@ -15,7 +15,7 @@
             <button
               type="button"
               class="pb-1 text-sm  tracking-wide border-b-2 "
-              :class="selected? 'text-violet-600 border-violet-600': 'text-gray-500  border-transparent'"
+              :class="selected? 'text-violet-600 indigo:text-indigo-600 border-violet-600 indigo:border-indigo-600': 'text-gray-500  border-transparent'"
               >
               {{ label }}
             </button>
@@ -34,7 +34,7 @@
             <button
               type="button"
               title="插入連結"
-              class="ml-1 w-7 h-7 p-1 flex-shrink-0 rounded hover:bg-violet-500 hover:text-white"
+              class="ml-1 w-7 h-7 p-1 flex-shrink-0 rounded hover:bg-violet-500 indigo:hover:bg-indigo-500 hover:text-white"
               @click="handleSubmit"
             >
               <RemixIcon icon="check-line"/>

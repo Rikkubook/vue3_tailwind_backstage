@@ -7,10 +7,12 @@
 }
 .notification-default{
   .notification-inner{
-    @apply border-violet-500
+    @apply border-violet-500;
+    @apply indigo:border-indigo-500;
   }
   .notification-icon{
-    @apply text-violet-500
+    @apply text-violet-500;
+    @apply indigo:text-indigo-500;
   }
 }
 

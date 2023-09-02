@@ -25,7 +25,7 @@
         <tr
           v-for="(record,index) in data"
           :key="record.id"
-          :class="{'bg-violet-50': rowSelectStatus[index]} "
+          :class="{'bg-violet-50 indigo:bg-indigo-50': rowSelectStatus[index]} "
         >
           <td v-if="showSelection" class="pl-5 py-3 text-gray-600 whitespace-nowrap">
             <!-- https://penueling.com/%E7%B7%9A%E4%B8%8A%E5%AD%B8%E7%BF%92/vue3%E4%BD%BF%E7%94%A8v-model%E7%B6%81%E5%AE%9A/ -->

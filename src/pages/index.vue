@@ -111,6 +111,7 @@ import {ref, onMounted} from 'vue'
 import { Chart } from 'chart.js'
 import { rewriteDefault } from 'vue/compiler-sfc'
 import { useLineChart, useBarChart } from '@/composables/useChart'
+import { useTheme } from '@/composables/useTheme'
 
 export default {
   setup(){
@@ -181,6 +182,7 @@ export default {
         post_title: "文章2"
       }
     ])
+    const {applyColor} = useTheme()
 
     onMounted(()=> {
       const lineDate = ['6/21(一)', '6/22(二)','6/23(三)', '6/24(四)', '6/25(五)', '6/26(六)', '6/27(日)']
@@ -188,12 +190,12 @@ export default {
       {
           label: '6/21 - 6/27',
           data: [3, 10, 5, 2, 20, 30, 45],
-          color: '#7C3AED', // violet-600
+          color: applyColor({violet:'#7C3AED', indigo: '#4f46e5' }), // violet-600
         },
         {
           label: '6/14 - 6/20',
           data: [1, 2, 8, 5, 10, 24, 32],
-          color: '#C4B5FD', // violet-300
+          color:  applyColor({violet:'#C4B5FD', indigo: '#a5b4fc' }), // violet-300
         }
       ]
       useLineChart(lineChartE1, lineDate, lineDatasets)
@@ -203,12 +205,12 @@ export default {
         {
           label: '電腦',
           data: [3, 10, 5, 2, 20, 30, 45],
-          color: '#7C3AED', // violet-600
+          color: applyColor({violet:'#7C3AED', indigo: '#4f46e5' }), // violet-600
         },
         {
           label: '手機',
           data: [1, 2, 8, 5, 10, 24, 32],
-          color: '#C4B5FD', // violet-200
+          color: applyColor({violet:'#C4B5FD', indigo: '#a5b4fc' }), // violet-200
         },
       ]
       useBarChart(barChartE1, barDate, barDatasets )

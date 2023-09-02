@@ -1,7 +1,7 @@
 <template>
   <button
     class="mr-1 w-7 h-7 p-1 rounded"
-    :class="isActive()? 'bg-violet-500 text-white':'hover:bg-violet-500 hover:text-white'"
+    :class="isActive()? 'bg-violet-500 indigo:bg-indigo-500 text-white':'hover:bg-violet-500 indigo:hover:bg-indigo-500 hover:text-white'"
     @click="action"
     :title="title"
   >

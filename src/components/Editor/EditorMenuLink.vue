@@ -2,7 +2,7 @@
   <div class="relative">
     <button
       class="mr-1 w-7 h-7 p-1 rounded"
-      :class="isActive()? 'bg-violet-500 text-white':'hover:bg-violet-500 hover:text-white'"
+      :class="isActive()? 'bg-violet-500 indigo:bg-indigo-500 text-white':'hover:bg-violet-500 indigo:hover:bg-indigo-500 hover:text-white'"
       @click="handleAction"
       :title="title"
     >
@@ -20,7 +20,7 @@
       <button
         type="button"
         title="插入連結"
-        class="ml-1 w-7 h-7 p-1 flex-shrink-0 rounded hover:bg-violet-500 hover:text-white"
+        class="ml-1 w-7 h-7 p-1 flex-shrink-0 rounded hover:bg-violet-500 indigo:hover:bg-indigo-500 hover:text-white"
         @click="handleSubmit"
       >
         <RemixIcon icon="check-line"/>
@@ -28,7 +28,7 @@
       <button
         type="button"
         title="取消連結"
-        class="ml-1 w-7 h-7 p-1 flex-shrink-0 rounded hover:bg-violet-500 hover:text-white"
+        class="ml-1 w-7 h-7 p-1 flex-shrink-0 rounded hover:bg-violet-500 indigo:hover:bg-indigo-500 hover:text-white"
         @click="handleUnlink"
       >
         <RemixIcon icon="link-unlink"/>
@@ -36,7 +36,7 @@
       <a
         type="button"
         title="瀏覽網頁"
-        class="ml-1 w-7 h-7 p-1 flex-shrink-0 rounded hover:bg-violet-500 hover:text-white"
+        class="ml-1 w-7 h-7 p-1 flex-shrink-0 rounded hover:bg-violet-500 indigo:hover:bg-indigo-500 hover:text-white"
         :href="url"
         target="_blank"
       >
