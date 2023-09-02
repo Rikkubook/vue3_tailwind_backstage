@@ -9,6 +9,7 @@ module.exports = {
     "./src/**/*.{vue,js,ts,jsx,tsx}",
   ],
   theme: {
+    themeVariants: ['indigo'],
     extend: {
       colors:{
         gray: colors.zinc, //把gray改為預設zinc
@@ -37,6 +38,7 @@ module.exports = {
   plugins: [
     require('@tailwindcss/aspect-ratio'),
     require('@tailwindcss/forms'),
-    require('@tailwindcss/typography')
+    require('@tailwindcss/typography'),
+    require('tailwindcss-multi-theme'),
   ],
 }
