@@ -1,9 +1,12 @@
 import { Chart } from 'chart.js'
 import { unref } from 'vue'
+import { useTheme } from './useTheme'
 
 
 export function useLineChart(target, labels, datasets, options){
   const el = unref(target) //會自己解 .value
+
+  const { isDark } = useTheme()
 
   return new Chart(el,{
     type: 'line',
@@ -29,19 +32,28 @@ export function useLineChart(target, labels, datasets, options){
       plugins:{
         legend:{ // 小標
           align: 'end',
-          position: 'bottom'
+          position: 'bottom',
+          labels:{
+            color: isDark? 'white': Chart.defaults.color,
+          }
         }
       },
       scales:{
         x: {
           grid: {
             display: false
+          },
+          ticks:{
+            color:  isDark? 'white': Chart.defaults.color,
           }
         },
         y: {
           grid: {
             borderDash: [3],
             drawBorder: false
+          },
+          ticks:{
+            color:  isDark? 'white': Chart.defaults.color,
           }
         }
       }
@@ -51,6 +63,7 @@ export function useLineChart(target, labels, datasets, options){
 
 export function useBarChart(target, labels, datasets, options){
   const el = unref(target) //會自己解 .value
+  const { isDark } = useTheme()
 
   return new Chart(el,{
     type: 'bar',
@@ -76,19 +89,28 @@ export function useBarChart(target, labels, datasets, options){
       plugins:{
         legend:{ // 小標
           align: 'end',
-          position: 'bottom'
+          position: 'bottom',
+          labels:{
+            color: isDark? 'white': Chart.defaults.color,
+          }
         }
       },
       scales:{
         x: {
           grid: {
             display: false
+          },
+          ticks:{
+            color: isDark? 'white': Chart.defaults.color,
           }
         },
         y: {
           grid: {
             borderDash: [3],
             drawBorder: false
+          },
+          ticks:{
+            color: isDark? 'white': Chart.defaults.color,
           }
         }
       }

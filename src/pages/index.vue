@@ -30,7 +30,7 @@
       ></TrendingCard>
       <Card class="col-span-12 lg:col-span-8 min-w-0" stretch>
         <div class="h-[400px] flex flex-col p-5">
-          <h2 class=" text-xl font-semibold tracking-wide text-gray-700">瀏覽人次</h2>
+          <h2 class=" text-xl font-semibold tracking-wide text-gray-700 dark:text-gray-100">瀏覽人次</h2>
           <div class="flex-grow min-h-0 py-4">
             <canvas ref="lineChartE1"></canvas>
           </div>
@@ -38,7 +38,7 @@
       </Card>
       <Card class="col-span-12 lg:col-span-4 min-w-0" stretch>
         <div class="h-[400px] flex flex-col p-5">
-          <h2 class=" text-xl font-semibold tracking-wide text-gray-700">瀏覽裝置</h2>
+          <h2 class=" text-xl font-semibold tracking-wide text-gray-700 dark:text-gray-100">瀏覽裝置</h2>
           <div class="flex-grow min-h-0 py-4">
             <canvas ref="barChartE1"></canvas>
           </div>
@@ -82,7 +82,7 @@
       </Card>
       <Card class="col-span-12 lg:col-span-4 min-w-0 h-full" stretch>
         <div class="p-5">
-          <h2 class=" text-xl font-semibold tracking-wide text-gray-700">最新留言</h2>
+          <h2 class=" text-xl font-semibold tracking-wide text-gray-700 dark:text-gray-100">最新留言</h2>
           <ul class="mt-4 space-y-4">
             <li class="flex" v-for="comment in comments" :key="comment.id">
               <img class="w-8 h-8 rounded-full" :src="comment.author_avatar" :alt="comment.post_id">
@@ -190,12 +190,12 @@ export default {
       {
           label: '6/21 - 6/27',
           data: [3, 10, 5, 2, 20, 30, 45],
-          color: applyColor({violet:'#7C3AED', indigo: '#4f46e5' }), // violet-600
+          color: applyColor({violet:'#7C3AED', indigo: '#4f46e5', dark: '#57534e' }), // violet-600
         },
         {
           label: '6/14 - 6/20',
           data: [1, 2, 8, 5, 10, 24, 32],
-          color:  applyColor({violet:'#C4B5FD', indigo: '#a5b4fc' }), // violet-300
+          color:  applyColor({violet:'#C4B5FD', indigo: '#a5b4fc', dark: '#a8a29e' }), // violet-300
         }
       ]
       useLineChart(lineChartE1, lineDate, lineDatasets)
@@ -205,12 +205,12 @@ export default {
         {
           label: '電腦',
           data: [3, 10, 5, 2, 20, 30, 45],
-          color: applyColor({violet:'#7C3AED', indigo: '#4f46e5' }), // violet-600
+          color: applyColor({violet:'#7C3AED', indigo: '#4f46e5', dark: '#57534e' }), // violet-600
         },
         {
           label: '手機',
           data: [1, 2, 8, 5, 10, 24, 32],
-          color: applyColor({violet:'#C4B5FD', indigo: '#a5b4fc' }), // violet-200
+          color: applyColor({violet:'#C4B5FD', indigo: '#a5b4fc', dark: '#a8a29e' }), // violet-200
         },
       ]
       useBarChart(barChartE1, barDate, barDatasets )

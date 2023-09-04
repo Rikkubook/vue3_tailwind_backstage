@@ -12,6 +12,8 @@ const theme = useLocalStorage('theme','violet')
 
 const applyColor = mapping => mapping[theme.value] || ''
 
+const isDark = computed(()=> currentTheme.value.value === 'dark')
+
 watch(theme,()=>{
   document.documentElement.classList.remove(
     ...themeOptions // 要解構回傳的Array
@@ -22,6 +24,7 @@ watch(theme,()=>{
     document.documentElement.classList.add(currentTheme.value.htmlClass)
   }
 },{immediate: true})
+
 export function useTheme(){
-  return {themeOptions, currentTheme, theme, applyColor}
+  return {themeOptions, currentTheme, theme, applyColor, isDark}
 }
