@@ -14,7 +14,7 @@
         <PostForm
           v-model="form"
           :default-image="defaultImage"
-          :tag-autocomplete-items="tagsAutocompleteItems"
+          :tags-autocomplete-items="tagsAutocompleteItems"
           @submit="submit"
           @submit-draft="submitDraft"
         ></PostForm>

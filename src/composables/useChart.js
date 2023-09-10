@@ -1,14 +1,22 @@
 import { Chart } from 'chart.js'
-import { unref } from 'vue'
+import { unref, watch } from 'vue'
 import { useTheme } from './useTheme'
 
-
+function useCartDarkMode(cart){
+  const { isDark } = useTheme()
+  watch(isDark, ()=>{
+    cart.config.options.plugins.legend.labels.color = isDark? 'white': Chart.defaults.color
+    cart.config.options.scales.x.ticks.color = isDark? 'white': Chart.defaults.color
+    cart.config.options.scales.y.ticks.color = isDark? 'white': Chart.defaults.color
+    cart.update()
+  })
+}
 export function useLineChart(target, labels, datasets, options){
   const el = unref(target) //會自己解 .value
 
   const { isDark } = useTheme()
 
-  return new Chart(el,{
+  const lineChart =  new Chart(el,{
     type: 'line',
     data: {
       labels,
@@ -59,13 +67,15 @@ export function useLineChart(target, labels, datasets, options){
       }
     })
   })
+  useCartDarkMode(lineChart)
+  return lineChart
 }
 
 export function useBarChart(target, labels, datasets, options){
   const el = unref(target) //會自己解 .value
   const { isDark } = useTheme()
 
-  return new Chart(el,{
+  const barCart =  new Chart(el,{
     type: 'bar',
     data: {
       labels,
@@ -116,4 +126,7 @@ export function useBarChart(target, labels, datasets, options){
       }
     })
   })
+
+  useCartDarkMode(barCart)
+  return barCart
 }
