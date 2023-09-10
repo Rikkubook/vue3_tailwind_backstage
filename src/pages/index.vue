@@ -87,11 +87,11 @@
             <li class="flex" v-for="comment in comments" :key="comment.id">
               <img class="w-8 h-8 rounded-full" :src="comment.author_avatar" :alt="comment.post_id">
               <div class="mt-1 ml-4 flex-grow">
-                <p class="text-gray-800 font-medium tracking-wide ">{{  comment.author_name }}</p>
-                <div class="mt-2 text-gray-500 test-sm">
+                <p class="text-gray-800 dark:text-gray-100  font-medium tracking-wide ">{{  comment.author_name }}</p>
+                <div class="mt-2 text-gray-500 dark:text-gray-300   test-sm">
                   {{ comment.content }}
                 </div>
-                <div class="mt-1 py-1.5 px-3 bg-gray-100 rounded text-gray500 text-sm">
+                <div class="mt-1 py-1.5 px-3 bg-gray-100 dark:bg-gray-600  rounded text-gray-500 dark:text-gray-100  text-sm">
                     留言文章：<RouterLink :to="`/posts/${comment.post_id}`" class="link">{{ comment.post_title }}</RouterLink>
                 </div>
               </div>

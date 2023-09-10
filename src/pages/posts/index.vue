@@ -39,7 +39,7 @@
             <span
               v-for="tag in value"
               :key="tag"
-              class="text-sm font-normal bg-violet-600 indigo:bg-indigo-600 text-white px-2 py-0.5 rounded-full tracking-wider">{{ tag }}</span>
+              class="text-sm font-normal bg-violet-600 indigo:bg-indigo-600 dark:bg-stone-600 text-white px-2 py-0.5 rounded-full tracking-wider">{{ tag }}</span>
             </span>
         </template>
         <template #actions="{record,confirmDeleteText}">

@@ -2,6 +2,7 @@
   .link{
     @apply text-violet-500  hover:text-violet-600  transition-colors;
     @apply indigo:text-indigo-500 indigo:hover:text-indigo-600;
+    @apply dark:text-stone-200 dark:hover:text-stone-400;
   }
   .btn {
     @apply inline-flex justify-center items-center px-6 py-2 border border-transparent text-sm rounded-lg  transition-colors  focus:outline-none focus:ring-offset-2

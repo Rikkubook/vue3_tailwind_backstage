@@ -1,7 +1,7 @@
 <template>
   <button
     type="button"
-    class="inline-flex justify-center items-center w-8 h-8  text-gray-400 hover:text-violet-600 indigo:hover:text-indigo-600 transition-colors"
+    class="inline-flex justify-center items-center w-8 h-8  text-gray-400 hover:text-violet-600 indigo:hover:text-indigo-600 dark:hover:text-stone-500  transition-colors"
     @click="handleDelete"
   >
     <heroicons-outline-trash />

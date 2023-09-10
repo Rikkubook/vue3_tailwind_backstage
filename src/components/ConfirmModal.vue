@@ -2,12 +2,12 @@
   <!-- 這邊是與Modal 共用 -->
   <Modal v-model="isOpen" @success="handleSuccess" @cancel="handleCancel">
     <template #icon>
-      <heroicons-outline-exclamation class="mt-8 mx-auto w-12 h-12 text-red-600" />
+      <heroicons-outline-exclamation class="mt-8 mx-auto w-12 h-12 text-red-600 dark:text-red-500" />
     </template>
     <template #title>
       <DialogTitle
         as="h3"
-        class="text-center text-2xl font-medium leading-6 text-red-600  tracking-wider my-2"
+        class="text-center text-2xl font-medium leading-6 text-red-600 dark:text-red-500  tracking-wider my-2"
       >
         {{ title }}
       </DialogTitle>

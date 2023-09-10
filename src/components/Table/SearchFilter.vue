@@ -11,7 +11,7 @@
             class="absolute z-10 origin-top-left"
             v-slot="{close}"
           >
-            <div class="p-4 w-[270px] mt-2 bg-white border border-gray-200 rounded-md shadow-lg space-y-4">
+            <div class="p-4 w-[270px] mt-2 bg-white dark:bg-gray-700 dark:text-gray-100 border border-gray-200 rounded-md shadow-lg space-y-4 dark:border-gray-600">
               <div>
                 <label class="text-gray-400 text-sm">
                   建立日期

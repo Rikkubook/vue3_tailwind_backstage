@@ -2,7 +2,7 @@
   <div class="overflow-x-auto" v-bind="$attrs">
     <table class="w-full">
       <thead>
-        <tr class="border-b border-gray-200">
+        <tr class="border-b border-gray-200 dark:border-gray-500">
           <th v-if="showSelection" class="pl-5 py-3 text-left">
             <SelectAllCheckbox
               :disabled="selectAllDisable"
@@ -25,9 +25,9 @@
         <tr
           v-for="(record,index) in data"
           :key="record.id"
-          :class="{'bg-violet-50 indigo:bg-indigo-50': rowSelectStatus[index]} "
+          :class="{'bg-violet-50 indigo:bg-indigo-50 dark:bg-gray-600': rowSelectStatus[index]} "
         >
-          <td v-if="showSelection" class="pl-5 py-3 text-gray-600 whitespace-nowrap">
+          <td v-if="showSelection" class="pl-5 py-3 text-gray-600 dark:text-gray-300 whitespace-nowrap">
             <!-- https://penueling.com/%E7%B7%9A%E4%B8%8A%E5%AD%B8%E7%BF%92/vue3%E4%BD%BF%E7%94%A8v-model%E7%B6%81%E5%AE%9A/ -->
             <!-- https://ithelp.ithome.com.tw/m/articles/10268187 -->
             <SelectRowCheckbox
@@ -40,7 +40,7 @@
           <td
             v-for="column in columns"
             :key="column.key"
-            class="px-5 py-3 text-gray-600 whitespace-nowrap">
+            class="px-5 py-3 text-gray-600 dark:text-gray-300 whitespace-nowrap">
             <slot 
               :name="`column-${column.key}`"
               :record="record"
@@ -50,7 +50,7 @@
             </slot>
           </td>
 
-          <td v-if="showActions">
+          <td v-if="showActions" class="px-5 py-3 text-gray-600  dark:text-gray-300  whitespace-nowrap">
             <slot
               name="actions"
               :record="record"
@@ -70,12 +70,12 @@
     v-if="showPaginator"
     v-model:current-page="currentPage"
     :total-page="totalPage"
-    class="border-t border-gray-200"
+    class="border-t border-gray-200 dark:border-gray-500"
   />
   <!-- <input type="checkbox" v-model="showActionBar"> -->
   <ActionsBar :show="showActionBar">
     <div>
-      <div class="text-gray-600 test-sm sm:test-base">已選取 {{ selectedIds.length }} 筆資料</div>
+      <div class="text-gray-600  dark:text-white  test-sm sm:test-base">已選取 {{ selectedIds.length }} 筆資料</div>
     </div>
     <div class="space-x-2">
       <PrimaryButton class="btn-sm sm:btn-base" @click="updateSelectAllState('all')">
