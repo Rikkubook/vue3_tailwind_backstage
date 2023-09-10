@@ -1,5 +1,5 @@
 <template>
-  <div class="flex justify-center items-center bg-violet-600 indigo:bg-indigo-600 min-h-screen">
+  <div class="flex justify-center items-center bg-violet-600 indigo:bg-indigo-600 dark:bg-gray-800 min-h-screen">
     <div class="w-[400px] px-4">
       <h1 class="flex justify-center items-center h-16 text-white">
         <heroicons-outline-clipboard-list class="w-10 h-10 mr-2"/>
@@ -12,8 +12,8 @@
           <TextInput label="密碼" id="password" type="password" v-model="form.password" :error="'請輸入密碼'" required></TextInput>
           <PrimaryButton type="submit" class="w-full" :loading="loading"> 登入</PrimaryButton>
         </form>
-        <hr class="mt-6 mb-4 border-gray-300">
-        <div class="text-center text-gray-600">
+        <hr class="mt-6 mb-4 border-gray-300 dark:border-gray-500">
+        <div class="text-center text-gray-600 dark:text-gray-400">
           沒有帳號?
           <RouterLink to="/register" class="link">馬上註冊</RouterLink>
         </div>

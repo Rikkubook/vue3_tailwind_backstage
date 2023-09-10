@@ -3,7 +3,12 @@
     <label :for="id" class="form-label">
       {{ label }}
     </label>
-    <div v-if="editor" class="form-input p-0 focus-within:border-violet-600 indigo:focus-within:border-indigo-600 focus-within:ring-1 focus-within:ring-violet-600 indigo:focus-within:ring-indigo-600"> 
+    <div v-if="editor" :class="[
+      'form-input p-0 focus-within:ring-1',
+      'focus-within:border-violet-600 focus-within:ring-violet-600 ',
+      'indigo:focus-within:border-indigo-600 indigo:focus-within:ring-indigo-600',
+      'dark:focus-within:border-white dark:focus-within:ring-white'
+    ]"> 
       <!-- 多一層判斷是否已渲染 editor-->
       <EditorMenuBar/>
       <EditorContent class="px-3 py-2" :editor="editor" />
@@ -45,7 +50,7 @@ export default {
       ],
       editorProps: { // typography 內部渲染樣式
         attributes: {
-          class: 'prose prose-sm  prose-violet indigo:prose-indigo sm:prose sm:prose-violet mx-auto focus:outline-none !max-w-full min-h-[300px]',
+          class: 'prose prose-sm  prose-violet indigo:prose-indigo dark:prose-dark sm:prose sm:prose-violet mx-auto focus:outline-none !max-w-full min-h-[300px]',
         },
       },
       onUpdate: () => {

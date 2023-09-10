@@ -2,20 +2,20 @@
   <div class="relative">
     <button
       class="mr-1 w-7 h-7 p-1 rounded"
-      :class="showPopover? 'bg-violet-500 indigo:bg-indigo-500 text-white':'hover:bg-violet-500 indigo:hover:bg-indigo-500 hover:text-white'"
+      :class="showPopover? 'bg-violet-500 indigo:bg-indigo-500 dark:bg-stone-500 text-white':'hover:bg-violet-500 indigo:hover:bg-indigo-500 dark:hover:bg-stone-500 hover:text-white'"
       @click="handleAction"
       :title="title"
     >
       <RemixIcon :icon="icon"/>
     </button>
-    <div v-if="showPopover" ref="popoverEl" class="mt-1.5 absolute top-full left-[-103px] md:left-auto w-[300px] bg-white border border-gray-200 rounded shadow-md">
+    <div v-if="showPopover" ref="popoverEl" class="mt-1.5 absolute top-full left-[-103px] md:left-auto w-[300px] bg-white dark:bg-gray-600  border border-gray-200 dark:bg-border-500  rounded shadow-md">
       <TabGroup>
         <TabList class="flex items-center space-x-2 px-3 pt-2.5 border-b border-gray-200">
           <Tab v-for="label in ['連結', '上傳圖片']" :key="label" as="template" v-slot="{selected}">
             <button
               type="button"
               class="pb-1 text-sm  tracking-wide border-b-2 "
-              :class="selected? 'text-violet-600 indigo:text-indigo-600 border-violet-600 indigo:border-indigo-600': 'text-gray-500  border-transparent'"
+              :class="selected? 'text-violet-600 indigo:text-indigo-600 dark:text-stone-100 border-violet-600  indigo:border-indigo-600 dark:border-stone-100': 'text-gray-500  border-transparent'"
               >
               {{ label }}
             </button>
@@ -85,7 +85,6 @@ export default {
                 return;
             url.value = '';
             onClickOutside(popoverEl, event => {
-                console.log('aaa');
                 showPopover.value = false;
             });
             nextTick(() => {
